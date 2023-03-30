@@ -11,7 +11,7 @@ def register(request):
     if request.method == 'POST':
         
         form = forms.AccountForm(request.POST)
-        
+       
         if form.is_valid():
             
             user_email = form.cleaned_data['login']
@@ -19,7 +19,7 @@ def register(request):
 
             if len(id_account) == 0:
                 
-                # form.save()
+                form.save()
                 context = {'form': form,
                            'valid_email':True}
                 
