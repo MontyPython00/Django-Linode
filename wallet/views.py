@@ -7,26 +7,39 @@ from django.urls import reverse
 
     
 def register(request):
+
     if request.method == 'POST':
         
         form = forms.AccountForm(request.POST)
-        user_email = request.POST.get('login')
-        # unique_email = models.Account.objects.filter(login__contains=user_email).values_list('login', flat=True)
-        unique_email = models.Account.objects.filter(login__contains=user_email).get().login
         
-        if form.is_valid() and (unique_email != user_email):
-            form.save()
-            return redirect(reverse('wallet:home'))
+        if form.is_valid():
+            
+            user_email = form.cleaned_data['login']
+            id_account = models.Account.objects.filter(login__contains=user_email)
+
+            if len(id_account) == 0:
+                
+                # form.save()
+                context = {'form': form,
+                           'valid_email':True}
+                
+            else:
+
+                context = {'form': form,
+                'invalid_email': True}
         else:
-            form = forms.AccountForm
+
             context = {'form': form,
-            'invalid_email': True}
+                'invalid_email': True}
+
             
     else:
+
         form = forms.AccountForm
         context = {'form': form}  
-    return render(request, 'wallet/register_form.html', context=context)            
 
+                  
+    return render(request, 'wallet/register_form.html', context=context) 
 
 def index(request):
     return render(request, 'wallet/test.html')

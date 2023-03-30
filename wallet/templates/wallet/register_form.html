@@ -2,8 +2,19 @@
 {%load static%}
 {%block content%}
 <main>
-    <h1>Create an account!</h1>
+    {%if valid_email%}
 
+        <h1>Account has been created!</h1>
+    
+    {%elif invalid_email%}
+
+        <h1>Email is taken!</h1>
+
+    {%else%}
+
+        <h1>Create an account!</h1>
+
+    {%endif%}
 </br>
 
     <form action="" method="POST">
@@ -16,9 +27,9 @@
     </form>
     <br>
 
-    {%if invalid_email%}
-    Email is taken!
-    {%endif%}
+    <!-- {%if invalid_email%}
+        <h1>Email is taken!</h1>
+    {%endif%} -->
     
     <img src="{%static 'wallet/pgb-chip-crypto-3.svg'%}">
 </main>
