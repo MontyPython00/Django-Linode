@@ -1,0 +1,26 @@
+{%extends 'base.html'%}
+{%block content%}
+{%load static%}
+<!-- <table>
+<tr> -->
+{%for coin in coins%}
+{{coin}}$ <br>
+{%endfor%}
+<div class="">
+<form action="" method="POST">
+</br>
+    {%csrf_token%}
+    
+    {{form.search.label_tag}}
+    <div class="mb-3 form-center">{{form.search}}
+        <input type="submit" class="btn btn-primary" value="search">
+    </div> 
+    
+    
+    
+</form>
+</div>
+<!-- </tr>
+</table> -->
+{%endblock%}
+<!-- W css popraw wyglad -> tabelka/lista border itp.  -->

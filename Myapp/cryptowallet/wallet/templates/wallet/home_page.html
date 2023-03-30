@@ -1,0 +1,33 @@
+{%extends 'base.html'%}
+{%block content%}
+{%if account%}
+{%load static%}
+<h1>Welcome, {{user}}!</h1>
+</ul> </li>
+<div class="imgcont"><img src="{%static 'wallet/pgb-chip-crypto-3.svg'%}" class="img"></div>
+</br>
+{%else%}
+      {%load static%}
+      <form action="" method="POST">
+        {%csrf_token%}
+      <div class="mb-3 form-center">
+        {{form.login.label_tag}} {{form.login}}
+    </div>
+    <div class="mb-3 form-center">
+        {{form.password.label_tag}} {{form.password}}
+    </br>
+        <input type="submit" class="btn btn-primary" value="Sign In">
+    </div>
+  </form>
+  {%if invalid_data%}
+    Invalid login or password!
+  {%endif%}
+</ol>
+</ul> </li>
+      <div class="imgcont"><img src="{%static 'wallet/pgb-chip-crypto-3.svg'%}" class="img"></div>
+    </br>
+      <div class="">If you're testing out the site </br> email:test@domain.pl </br>password:test</div>
+
+
+{%endif%}
+      {%endblock%}
